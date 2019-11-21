@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:id="@+id/winter"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="Winter"/>
+
+    <item android:id="@+id/nature"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="Nature"/>
+
+    <item android:id="@+id/other"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="Other"/>
+
+    <item android:id="@+id/new_year"
+        android:icon="@drawable/ic_collections_black_24dp"
+        android:title="Year"/>
+</menu>

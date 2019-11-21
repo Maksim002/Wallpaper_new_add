@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.ActivityWallpaper"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolWallpaper"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#A89C25"/>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        app:layout_scrollFlags="scroll|enterAlways|snap"
+        android:id="@+id/bottomNavigation"
+        android:layout_width="330dp"
+        android:layout_height="45dp"
+        android:layout_gravity="center_horizontal"
+        app:menu="@menu/navigation_menu"
+        android:background="@drawable/zacruglenie"
+        app:itemTextColor="#00000C"/>
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"/>
+
+</LinearLayout>
