@@ -1,4 +1,4 @@
-package com.example.wallpaper.ui.adapter;
+package com.example.wallpaper.ui.adapter.pager;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;

@@ -1,4 +1,4 @@
-package com.example.wallpaper.ui;
+package com.example.wallpaper.ui.main;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 
 import com.example.wallpaper.R;
-import com.example.wallpaper.ui.adapter.ViewPegerAdaptor;
+import com.example.wallpaper.ui.adapter.pager.ViewPegerAdaptor;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class ActivityWallpaper extends AppCompatActivity {
