@@ -11,7 +11,8 @@
         android:id="@+id/toolWallpaper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#A89C25"/>
+        android:background="#044106"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:layout_scrollFlags="scroll|enterAlways|snap"
