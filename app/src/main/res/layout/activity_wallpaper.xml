@@ -11,8 +11,7 @@
         android:id="@+id/toolWallpaper"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#044106"
-        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"/>
+        android:background="#E7E9E7" />
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         app:layout_scrollFlags="scroll|enterAlways|snap"
@@ -23,13 +22,14 @@
         app:menu="@menu/navigation_menu"
         android:background="@drawable/zacruglenie"
         app:itemTextColor="#00000C"
-        android:layout_marginRight="5dp"
-        android:layout_marginLeft="5dp"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"/>
+        android:text="Hello World!"
+        android:layout_margin="8dp"/>
 
 </LinearLayout>

@@ -13,8 +13,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaper.R;
+import com.example.wallpaper.model.HomeModel;
 import com.example.wallpaper.model.Model;
 import com.example.wallpaper.ui.adapter.recycler.winter.WinterRecyclerAdapter;
+import com.example.wallpaper.ui.util.ResourceManager;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,6 +25,7 @@ import java.util.List;
 public class WinterFragment extends Fragment {
     private RecyclerView recyclerView;
     private WinterRecyclerAdapter adapter;
+    private String SAMPLES = "test.json";
 
     @Nullable
     @Override
@@ -36,11 +40,15 @@ public class WinterFragment extends Fragment {
     }
     private List<Model> getWinter(){
         List<Model> models = new ArrayList<>();
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
+        models.add(new Model(R.drawable.nebo));
         return models;
     }
+
 }

@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_marginLeft="5dp"
-    android:layout_marginRight="5dp"
-    android:layout_marginTop="5dp">
+    android:layout_margin="3dp"
+    android:layout_marginBottom="5dp">
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
@@ -14,32 +13,32 @@
         app:cardCornerRadius="12dp">
 
         <ImageView
-            android:id="@+id/imageNature"
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:id="@+id/imageWinter"
+            android:layout_width="168dp"
+            android:layout_height="325dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/krasivye_kollazh"
+            android:src="@drawable/nebo"
             android:scaleType="fitXY"/>
 
         <LinearLayout
             android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             android:layout_gravity="bottom"
             app:layout_constraintBottom_toBottomOf="@+id/card">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
+                android:layout_gravity="left"
                 app:cardCornerRadius="15dp"
                 android:layout_margin="5dp">
 
                 <Button
-                    android:id="@+id/buttonNature"
+                    android:id="@+id/buttonWinter"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:textColor="#F4F4F7"
@@ -49,7 +48,15 @@
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
             </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:layout_marginLeft="10dp"
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:src="@drawable/ic_favorite_border_black_24dp"/>
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

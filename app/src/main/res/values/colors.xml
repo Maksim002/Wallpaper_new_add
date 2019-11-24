@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#033009</color>
+    <color name="colorPrimaryDark">#CCCECC</color>
     <color name="colorAccent">#D81B60</color>
 
     <color name="tonerBottomNavigation">#FBFBFD</color>
+    <color name="theme_color">#FBFBFD</color>
+    <color name="theme_colorE">#00000A</color>
 </resources>
