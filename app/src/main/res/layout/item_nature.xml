@@ -13,7 +13,7 @@
         app:cardCornerRadius="12dp">
 
         <ImageView
-            android:id="@+id/imageWinter"
+            android:id="@+id/imageNature"
             android:layout_width="168dp"
             android:layout_height="325dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -38,7 +38,7 @@
                 android:layout_margin="5dp">
 
                 <Button
-                    android:id="@+id/buttonWinter"
+                    android:id="@+id/buttonNature"
                     android:layout_width="100dp"
                     android:layout_height="35dp"
                     android:textColor="#F4F4F7"
