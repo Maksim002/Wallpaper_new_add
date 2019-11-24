@@ -2,36 +2,25 @@ package com.example.wallpaper.ui.util;
 
 import android.content.Context;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.InputStream;
 
 public class ResourceManager {
 
-    public static String readFileFromAssets(Context context, String filename) {
-        StringBuilder builder = new StringBuilder();
-        BufferedReader reader = null;
-        try {
-            reader = new BufferedReader(
-                    new InputStreamReader(context.getAssets().open(filename)));
+    public static String readFromAssets(Context context, String filename) {
+        String сontent = "";
 
-            // do reading, usually loop until end of file reading
-            String mLine;
-            while ((mLine = reader.readLine()) != null) {
-                //process line
-                builder.append(mLine);
-            }
+        try {
+            InputStream stream = context.getAssets().open(filename);
+            int size = stream.available();
+            byte[] buffer = new byte[size];
+            stream.read(buffer);
+            stream.close();
+            сontent = new String(buffer);
         } catch (IOException e) {
-            //log the exception
-        } finally {
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    //log the exception
-                }
-            }
+            // Handle exceptions here
+            e.printStackTrace();
         }
-        return builder.toString();
+        return сontent;
     }
 }
