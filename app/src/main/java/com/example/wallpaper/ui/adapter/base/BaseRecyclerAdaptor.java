@@ -8,14 +8,18 @@ import androidx.annotation.LayoutRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.wallpaper.ui.main.Listener;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseRecyclerAdaptor<V extends BaseViewHolder<T>, T> extends RecyclerView.Adapter<V> {
     private List<T> data;
+    private Listener listener;
 
-    public BaseRecyclerAdaptor(List<T> list){
+    public BaseRecyclerAdaptor(List<T> list,Listener listener){
         this.data = list;
+        this.listener = listener;
     }
 
     @NonNull

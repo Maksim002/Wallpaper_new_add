@@ -5,12 +5,13 @@ import android.view.View;
 import com.example.wallpaper.R;
 import com.example.wallpaper.model.Model;
 import com.example.wallpaper.ui.adapter.base.BaseRecyclerAdaptor;
+import com.example.wallpaper.ui.main.Listener;
 
 import java.util.List;
 
 public class NewYearRecyclerAdapter extends BaseRecyclerAdaptor<NewYearViewHolder, Model> {
-    public NewYearRecyclerAdapter(List<Model> list) {
-        super(list);
+    public NewYearRecyclerAdapter(List<Model> list, Listener listener) {
+        super(list,listener);
     }
 
     @Override

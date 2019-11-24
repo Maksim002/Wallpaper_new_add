@@ -1,5 +1,6 @@
 package com.example.wallpaper.ui.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,7 +21,7 @@ import com.google.gson.reflect.TypeToken;
 import java.lang.reflect.Type;
 import java.util.List;
 
-public class WinterFragment extends Fragment {
+public class WinterFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private WinterRecyclerAdapter adapter;
     private String SAMPLES = "test.json";
@@ -32,7 +33,7 @@ public class WinterFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_winter,container,false);
 
         recyclerView = view.findViewById(R.id.recyclerWinter);
-        recyclerView.setAdapter(adapter = new WinterRecyclerAdapter(getQuestions()));
+        recyclerView.setAdapter(adapter = new WinterRecyclerAdapter(getQuestions(),this));
         adapter.updeteList(getQuestions());
 
         return view;
@@ -42,5 +43,9 @@ public class WinterFragment extends Fragment {
         Type type = new TypeToken<List<ModelGallery>>() {
         }.getType();
         return new Gson().fromJson(json, type);
+    }
+
+    @Override
+    public void onClikWinter(ModelGallery data) {
     }
 }

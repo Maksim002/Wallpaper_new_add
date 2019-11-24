@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaper.R;
 import com.example.wallpaper.model.Model;
+import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.nature.NatureRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NatureFragment extends Fragment {
+public class NatureFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private NatureRecyclerAdapter adapter;
 
@@ -27,7 +28,7 @@ public class NatureFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_nature,container,false);
 
         recyclerView = view.findViewById(R.id.recyclerNature);
-        recyclerView.setAdapter(adapter = new NatureRecyclerAdapter(getNature()));
+        recyclerView.setAdapter(adapter = new NatureRecyclerAdapter(getNature(),this));
         adapter.updeteList(getNature());
 
         return view;
@@ -40,5 +41,10 @@ public class NatureFragment extends Fragment {
         models.add(new Model(R.drawable.krasivye_kollazh));
         models.add(new Model(R.drawable.krasivye_kollazh));
         return models;
+    }
+
+    @Override
+    public void onClikWinter(ModelGallery data) {
+
     }
 }

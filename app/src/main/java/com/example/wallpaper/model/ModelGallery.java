@@ -30,7 +30,7 @@ public class ModelGallery implements Parcelable {
         }
     };
 
-    public int getId() {
+    public int getId(int layoutPosition) {
         return id;
     }
 

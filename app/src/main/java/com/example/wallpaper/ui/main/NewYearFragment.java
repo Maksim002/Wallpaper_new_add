@@ -12,12 +12,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaper.R;
 import com.example.wallpaper.model.Model;
+import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.year.NewYearRecyclerAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class NewYearFragment extends Fragment {
+public class NewYearFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private NewYearRecyclerAdapter adapter;
 
@@ -27,7 +28,7 @@ public class NewYearFragment extends Fragment {
         View view = inflater.inflate(R.layout.activity_new_year,container,false);
 
         recyclerView = view.findViewById(R.id.recyclerYear);
-        recyclerView.setAdapter(adapter = new NewYearRecyclerAdapter(getYear()));
+        recyclerView.setAdapter(adapter = new NewYearRecyclerAdapter(getYear(),this));
         adapter.updeteList(getYear());
         return view;
     }
@@ -39,5 +40,10 @@ public class NewYearFragment extends Fragment {
         models.add(new Model(R.drawable.krasivye_kollazh));
         models.add(new Model(R.drawable.krasivye_kollazh));
         return models;
+    }
+
+    @Override
+    public void onClikWinter(ModelGallery data) {
+
     }
 }
