@@ -44,7 +44,7 @@ public class NatureFragment extends Fragment implements Listener {
     }
 
     @Override
-    public void onClikWinter(ModelGallery data) {
+    public void onClickWinter(int adapterPosition, ModelGallery data) {
 
     }
 }

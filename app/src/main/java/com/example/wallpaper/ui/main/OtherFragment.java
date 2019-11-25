@@ -42,9 +42,8 @@ public class OtherFragment extends Fragment implements Listener {
         models.add(new Model(R.drawable.krasivye_kollazh));
         return models;
     }
-
     @Override
-    public void onClikWinter(ModelGallery data) {
+    public void onClickWinter(int adapterPosition, ModelGallery data) {
 
     }
 }

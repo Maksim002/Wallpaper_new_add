@@ -25,6 +25,7 @@ public class WinterFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private WinterRecyclerAdapter adapter;
     private String SAMPLES = "test.json";
+    private ModelList modelList;
 
 
     @Nullable
@@ -46,6 +47,7 @@ public class WinterFragment extends Fragment implements Listener {
     }
 
     @Override
-    public void onClikWinter(ModelGallery data) {
+    public void onClickWinter(int adapterPosition, ModelGallery data) {
+        modelList = new ModelList();
     }
 }

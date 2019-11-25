@@ -17,14 +17,16 @@ import com.example.wallpaper.ui.main.Listener;
 
 class WinterViewHolder extends BaseViewHolder<ModelGallery> {
 
-    private ImageView imageView;
+    private ImageView imageView,imageViewE;
     private Button button;
     private Listener listener;
 
-    public WinterViewHolder(@NonNull View itemView) {
+    public WinterViewHolder(@NonNull View itemView,Listener listener) {
         super(itemView);
+        this.listener = listener;
         imageView = itemView.findViewById(R.id.imageWinter);
         button = itemView.findViewById(R.id.buttonWinter);
+        imageViewE = itemView.findViewById(R.id.imageYsWinter);
     }
 
     @Override
@@ -32,9 +34,10 @@ class WinterViewHolder extends BaseViewHolder<ModelGallery> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClikWinter(data);
+                listener.onClickWinter(getAdapterPosition(),data);
             }
         });
+
         Glide.with(imageView).load(data.getUrl())
                 .apply(new RequestOptions())
                 .transform(new CenterCrop(),

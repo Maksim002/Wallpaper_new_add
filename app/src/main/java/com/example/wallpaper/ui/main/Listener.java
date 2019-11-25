@@ -1,8 +1,10 @@
 package com.example.wallpaper.ui.main;
 
+import android.view.View;
+
 import com.example.wallpaper.model.ModelGallery;
 
 public interface Listener {
 
-    void onClikWinter(ModelGallery data);
+    void onClickWinter(int adapterPosition, ModelGallery data);
 }

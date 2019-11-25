@@ -10,8 +10,11 @@ import com.example.wallpaper.ui.main.Listener;
 import java.util.List;
 
 public class WinterRecyclerAdapter extends BaseRecyclerAdaptor<WinterViewHolder, ModelGallery> {
+    private Listener listener;
+
     public WinterRecyclerAdapter(List<ModelGallery> list, Listener listener) {
-        super(list,listener);
+        super(list, listener);
+        this.listener = listener;
     }
 
     @Override
@@ -21,6 +24,6 @@ public class WinterRecyclerAdapter extends BaseRecyclerAdaptor<WinterViewHolder,
 
     @Override
     protected WinterViewHolder getViewHolder(View view) {
-        return new WinterViewHolder(view);
+        return new WinterViewHolder(view,listener);
     }
 }
