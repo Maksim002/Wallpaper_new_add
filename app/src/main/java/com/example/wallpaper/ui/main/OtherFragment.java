@@ -14,13 +14,18 @@ import com.example.wallpaper.R;
 import com.example.wallpaper.model.Model;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.other.OtherRecyclerAdapter;
+import com.example.wallpaper.ui.util.ResourceManager;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
 public class OtherFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private OtherRecyclerAdapter adapter;
+    private String SAMPLES = "other.json";
 
     @Nullable
     @Override
@@ -28,22 +33,19 @@ public class OtherFragment extends Fragment implements Listener {
         View view =  inflater.inflate(R.layout.fragment_other,container,false);
 
         recyclerView = view.findViewById(R.id.recyclerOther);
-        recyclerView.setAdapter(adapter = new OtherRecyclerAdapter(getOther(),this));
-        adapter.updeteList(getOther());
+        recyclerView.setAdapter(adapter = new OtherRecyclerAdapter(getQuestions(),this));
+        adapter.updeteList(getQuestions());
 
         return view;
     }
-    private List<Model> getOther(){
-        List<Model> models = new ArrayList<>();
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        models.add(new Model(R.drawable.krasivye_kollazh));
-        return models;
+    private List<ModelGallery> getQuestions() {
+        String json = ResourceManager.readFromAssets(getContext(), SAMPLES);
+        Type type = new TypeToken<List<ModelGallery>>() {
+        }.getType();
+        return new Gson().fromJson(json, type);
     }
     @Override
-    public void onClickWinter(int adapterPosition, ModelGallery data) {
+    public void onClick(int adapterPosition, ModelGallery data) {
 
     }
 }

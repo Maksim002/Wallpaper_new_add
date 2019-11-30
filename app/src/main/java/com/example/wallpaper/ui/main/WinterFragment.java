@@ -53,7 +53,7 @@ public class WinterFragment extends Fragment implements Listener {
     }
 
     @Override
-    public void onClickWinter(int adapterPosition, ModelGallery data) {
+    public void onClick(int adapterPosition, ModelGallery data) {
         switch (adapterPosition) {
             case 1:
 

@@ -4,14 +4,18 @@ import android.view.View;
 
 import com.example.wallpaper.R;
 import com.example.wallpaper.model.Model;
+import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseRecyclerAdaptor;
 import com.example.wallpaper.ui.main.Listener;
 
 import java.util.List;
 
-public class OtherRecyclerAdapter extends BaseRecyclerAdaptor<OtherViewHolder, Model> {
-    public OtherRecyclerAdapter(List<Model> list, Listener listener) {
+public class OtherRecyclerAdapter extends BaseRecyclerAdaptor<OtherViewHolder, ModelGallery> {
+    private Listener listener;
+
+    public OtherRecyclerAdapter(List<ModelGallery> list, Listener listener) {
         super(list,listener);
+        this.listener = listener;
     }
 
     @Override
@@ -21,6 +25,6 @@ public class OtherRecyclerAdapter extends BaseRecyclerAdaptor<OtherViewHolder, M
 
     @Override
     protected OtherViewHolder getViewHolder(View view) {
-        return new OtherViewHolder(view);
+        return new OtherViewHolder(view,listener);
     }
 }

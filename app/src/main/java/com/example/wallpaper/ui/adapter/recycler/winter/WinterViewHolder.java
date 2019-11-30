@@ -1,7 +1,6 @@
 package com.example.wallpaper.ui.adapter.recycler.winter;
 
 import android.app.WallpaperManager;
-import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.util.DisplayMetrics;
@@ -19,8 +18,6 @@ import com.example.wallpaper.R;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseViewHolder;
 import com.example.wallpaper.ui.main.Listener;
-
-import java.io.IOException;
 
 class WinterViewHolder extends BaseViewHolder<ModelGallery> {
 
@@ -48,7 +45,7 @@ class WinterViewHolder extends BaseViewHolder<ModelGallery> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClickWinter(getAdapterPosition(),data);
+                listener.onClick(getAdapterPosition(),data);
             }
         });
 

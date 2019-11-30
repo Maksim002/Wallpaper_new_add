@@ -6,5 +6,5 @@ import com.example.wallpaper.model.ModelGallery;
 
 public interface Listener {
 
-    void onClickWinter(int adapterPosition, ModelGallery data);
+    void onClick(int adapterPosition, ModelGallery data);
 }
