@@ -1,10 +1,16 @@
 package com.example.wallpaper.ui.main;
 
-import android.content.Intent;
+import android.app.WallpaperManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -25,20 +31,20 @@ public class WinterFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private WinterRecyclerAdapter adapter;
     private String SAMPLES = "test.json";
-    private ModelList modelList;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_winter,container,false);
+        View view = inflater.inflate(R.layout.fragment_winter, container, false);
 
         recyclerView = view.findViewById(R.id.recyclerWinter);
-        recyclerView.setAdapter(adapter = new WinterRecyclerAdapter(getQuestions(),this));
+        recyclerView.setAdapter(adapter = new WinterRecyclerAdapter(getQuestions(), this));
         adapter.updeteList(getQuestions());
 
         return view;
     }
+
     private List<ModelGallery> getQuestions() {
         String json = ResourceManager.readFromAssets(getContext(), SAMPLES);
         Type type = new TypeToken<List<ModelGallery>>() {
@@ -48,6 +54,10 @@ public class WinterFragment extends Fragment implements Listener {
 
     @Override
     public void onClickWinter(int adapterPosition, ModelGallery data) {
-        modelList = new ModelList();
+        switch (adapterPosition) {
+            case 1:
+
+                break;
+        }
     }
 }

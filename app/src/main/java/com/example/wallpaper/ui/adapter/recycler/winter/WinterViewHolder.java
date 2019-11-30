@@ -1,5 +1,10 @@
 package com.example.wallpaper.ui.adapter.recycler.winter;
 
+import android.app.WallpaperManager;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -15,11 +20,20 @@ import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseViewHolder;
 import com.example.wallpaper.ui.main.Listener;
 
+import java.io.IOException;
+
 class WinterViewHolder extends BaseViewHolder<ModelGallery> {
 
     private ImageView imageView,imageViewE;
     private Button button;
     private Listener listener;
+
+    private WallpaperManager wallpaperManager;
+    private DisplayMetrics displayMetrics;
+    private int width, height;
+    private Bitmap bitmapE, bitmapB;
+    private BitmapDrawable bitmapDrawable;
+
 
     public WinterViewHolder(@NonNull View itemView,Listener listener) {
         super(itemView);
