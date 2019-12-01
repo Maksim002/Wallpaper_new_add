@@ -1,5 +1,6 @@
 package com.example.wallpaper.ui.adapter.recycler.nature;
 
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -16,6 +17,7 @@ import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseViewHolder;
 import com.example.wallpaper.ui.main.Listener;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 class NatureViewHolder extends BaseViewHolder<ModelGallery> {
@@ -28,6 +30,7 @@ class NatureViewHolder extends BaseViewHolder<ModelGallery> {
         this.listener = listener;
         imageView = itemView.findViewById(R.id.imageNature);
         button = itemView.findViewById(R.id.buttonNature);
+
     }
 
     @Override
@@ -37,6 +40,7 @@ class NatureViewHolder extends BaseViewHolder<ModelGallery> {
             public void onClick(View v) {
                 try {
                     listener.onClick(getAdapterPosition(),data);
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

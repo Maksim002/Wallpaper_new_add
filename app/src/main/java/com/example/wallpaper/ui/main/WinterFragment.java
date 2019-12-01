@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,8 @@ import java.util.List;
 public class WinterFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private WinterRecyclerAdapter adapter;
-    private String SAMPLES = "test.json";
+    private String SAMPLES = "winter.json";
+    private ImageView imageView;
 
 
     @Nullable
@@ -61,10 +63,6 @@ public class WinterFragment extends Fragment implements Listener {
         new DownloadImageTask(requireContext())
                 .execute(data.getUrl());
 
-        switch (adapterPosition) {
-            case 1:
-
-                break;
         }
     }
 
@@ -97,7 +95,7 @@ public class WinterFragment extends Fragment implements Listener {
                 // the lock-screen-specific wallpaper
                 try {
                     Toast.makeText(context, "set", Toast.LENGTH_SHORT).show();
-                    wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_SYSTEM | WallpaperManager.FLAG_LOCK);
+                    wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_LOCK | WallpaperManager.FLAG_SYSTEM);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -111,5 +109,4 @@ public class WinterFragment extends Fragment implements Listener {
             }
         }
     }
-}
 
