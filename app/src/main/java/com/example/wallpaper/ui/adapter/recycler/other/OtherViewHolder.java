@@ -15,6 +15,8 @@ import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseViewHolder;
 import com.example.wallpaper.ui.main.Listener;
 
+import java.io.IOException;
+
 class OtherViewHolder extends BaseViewHolder<ModelGallery> {
     private ImageView imageView,imageViewE;
     private Button button;
@@ -32,7 +34,11 @@ class OtherViewHolder extends BaseViewHolder<ModelGallery> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onClick(getAdapterPosition(),data);
+                try {
+                    listener.onClick(getAdapterPosition(),data);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
 

@@ -20,7 +20,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:src="@drawable/nebo"
-        android:scaleType="fitXY"/>
+        android:layout_gravity="center"/>
 
         <LinearLayout
             android:padding="5dp"
