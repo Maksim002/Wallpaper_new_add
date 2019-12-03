@@ -40,9 +40,9 @@
                 <Button
                     android:id="@+id/buttonWinter"
                     android:layout_width="100dp"
-                    android:layout_height="35dp"
+                    android:layout_height="30dp"
                     android:textColor="#F4F4F7"
-                    android:background="#3A8BCA"
+                    android:background="#06740D"
                     android:textSize="15dp"
                     android:text="Установить"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1" />

@@ -124,7 +124,7 @@ public class WinterFragment extends Fragment implements Listener {
                 try {
                     while (progressDialog.getProgress() <= progressDialog
                             .getMax()) {
-                        Thread.sleep(150);
+                        Thread.sleep(100);
                         handle.sendMessage(handle.obtainMessage());
                         if (progressDialog.getProgress() == progressDialog
                                 .getMax()) {
@@ -143,7 +143,7 @@ public class WinterFragment extends Fragment implements Listener {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            progressDialog.incrementProgressBy(2);
+            progressDialog.incrementProgressBy(1);
         }
     };
 }

@@ -122,7 +122,7 @@ public class NewYearFragment extends Fragment implements Listener {
                 try {
                     while (progressDialog.getProgress() <= progressDialog
                             .getMax()) {
-                        Thread.sleep(200);
+                        Thread.sleep(100);
                         handle.sendMessage(handle.obtainMessage());
                         if (progressDialog.getProgress() == progressDialog
                                 .getMax()) {
