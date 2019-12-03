@@ -62,7 +62,7 @@ public class OtherFragment extends Fragment implements Listener {
                 .execute(data.getUrl());
     }
 
-    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+    static class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
         Context context;
 
         public DownloadImageTask(Context context) {

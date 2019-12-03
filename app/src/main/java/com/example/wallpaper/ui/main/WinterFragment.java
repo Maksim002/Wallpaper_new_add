@@ -62,49 +62,48 @@ public class WinterFragment extends Fragment implements Listener {
 
         new DownloadImageTask(requireContext())
                 .execute(data.getUrl());
-
-        }
     }
 
-    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-        Context context;
+        class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+            Context context;
 
-        public DownloadImageTask(Context context) {
-            this.context = context;
-        }
-
-        protected Bitmap doInBackground(String... urls) {
-            String urldisplay = urls[0];
-            Bitmap mIcon11 = null;
-            try {
-                InputStream in = new java.net.URL(urldisplay).openStream();
-                mIcon11 = BitmapFactory.decodeStream(in);
-            } catch (Exception e) {
-                Log.e("Error", e.getMessage());
-                e.printStackTrace();
+            public DownloadImageTask(Context context) {
+                this.context = context;
             }
-            return mIcon11;
-        }
 
-        protected void onPostExecute(Bitmap result) {
-            final WallpaperManager wpManager = WallpaperManager.getInstance(context);
-            // Set the wallpaper
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                // Create the pitch black bitmap
-                // On Android N and above use the new API to set both the general system wallpaper and
-                // the lock-screen-specific wallpaper
+            protected Bitmap doInBackground(String... urls) {
+                String urldisplay = urls[0];
+                Bitmap mIcon11 = null;
                 try {
-                    Toast.makeText(context, "set", Toast.LENGTH_SHORT).show();
-                    wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_LOCK | WallpaperManager.FLAG_SYSTEM);
-                } catch (IOException e) {
+                    InputStream in = new java.net.URL(urldisplay).openStream();
+                    mIcon11 = BitmapFactory.decodeStream(in);
+                } catch (Exception e) {
+                    Log.e("Error", e.getMessage());
                     e.printStackTrace();
                 }
-            } else {
-                Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
-                try {
-                    wpManager.setBitmap(result);
-                } catch (IOException e) {
-                    e.printStackTrace();
+                return mIcon11;
+            }
+
+            protected void onPostExecute(Bitmap result) {
+                final WallpaperManager wpManager = WallpaperManager.getInstance(context);
+                // Set the wallpaper
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    // Create the pitch black bitmap
+                    // On Android N and above use the new API to set both the general system wallpaper and
+                    // the lock-screen-specific wallpaper
+                    try {
+                        Toast.makeText(context, "set", Toast.LENGTH_SHORT).show();
+                        wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_SYSTEM | WallpaperManager.FLAG_LOCK);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                } else {
+                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
+                    try {
+                        wpManager.setBitmap(result);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
             }
         }
