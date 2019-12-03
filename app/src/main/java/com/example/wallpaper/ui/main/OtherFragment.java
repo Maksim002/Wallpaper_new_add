@@ -1,5 +1,7 @@
 package com.example.wallpaper.ui.main;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,6 +9,8 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -37,6 +41,8 @@ public class OtherFragment extends Fragment implements Listener {
     private OtherRecyclerAdapter adapter;
     private String SAMPLES = "other.json";
 
+    private ProgressDialog progressDialog;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -58,6 +64,7 @@ public class OtherFragment extends Fragment implements Listener {
 
     @Override
     public void onClick(int adapterPosition, ModelGallery data) throws IOException{
+        setProgressDialog();
         new DownloadImageTask(requireContext())
                 .execute(data.getUrl());
     }
@@ -90,13 +97,11 @@ public class OtherFragment extends Fragment implements Listener {
                 // On Android N and above use the new API to set both the general system wallpaper and
                 // the lock-screen-specific wallpaper
                 try {
-                    Toast.makeText(context, "set", Toast.LENGTH_SHORT).show();
                     wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_SYSTEM | WallpaperManager.FLAG_LOCK);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             } else {
-                Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
                 try {
                     wpManager.setBitmap(result);
                 } catch (IOException e) {
@@ -105,4 +110,40 @@ public class OtherFragment extends Fragment implements Listener {
             }
         }
     }
+    public void setProgressDialog() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMax(100);
+        progressDialog.setMessage("Its loading....");
+        progressDialog.setTitle("Setting wallpaper");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (progressDialog.getProgress() <= progressDialog
+                            .getMax()) {
+                        Thread.sleep(200);
+                        handle.sendMessage(handle.obtainMessage());
+                        if (progressDialog.getProgress() == progressDialog
+                                .getMax()) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    @SuppressLint("HandlerLeak")
+    Handler handle = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            progressDialog.incrementProgressBy(1);
+        }
+    };
 }

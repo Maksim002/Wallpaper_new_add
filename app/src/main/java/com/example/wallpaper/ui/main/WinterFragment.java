@@ -1,5 +1,7 @@
 package com.example.wallpaper.ui.main;
 
+import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.app.WallpaperManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,11 +9,12 @@ import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -35,7 +38,8 @@ public class WinterFragment extends Fragment implements Listener {
     private RecyclerView recyclerView;
     private WinterRecyclerAdapter adapter;
     private String SAMPLES = "winter.json";
-    private ImageView imageView;
+
+    private ProgressDialog progressDialog;
 
 
     @Nullable
@@ -59,53 +63,88 @@ public class WinterFragment extends Fragment implements Listener {
 
     @Override
     public void onClick(int adapterPosition, ModelGallery data) throws IOException {
-
+        setProgressDialog();
         new DownloadImageTask(requireContext())
                 .execute(data.getUrl());
     }
 
-        class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
-            Context context;
+    class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
+        Context context;
 
-            public DownloadImageTask(Context context) {
-                this.context = context;
+        public DownloadImageTask(Context context) {
+            this.context = context;
+        }
+
+        protected Bitmap doInBackground(String... urls) {
+            String urldisplay = urls[0];
+            Bitmap mIcon11 = null;
+            try {
+                InputStream in = new java.net.URL(urldisplay).openStream();
+                mIcon11 = BitmapFactory.decodeStream(in);
+            } catch (Exception e) {
+                Log.e("Error", e.getMessage());
+                e.printStackTrace();
             }
+            return mIcon11;
+        }
 
-            protected Bitmap doInBackground(String... urls) {
-                String urldisplay = urls[0];
-                Bitmap mIcon11 = null;
+        protected void onPostExecute(Bitmap result) {
+            final WallpaperManager wpManager = WallpaperManager.getInstance(context);
+            // Set the wallpaper
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                // Create the pitch black bitmap
+                // On Android N and above use the new API to set both the general system wallpaper and
+                // the lock-screen-specific wallpaper
                 try {
-                    InputStream in = new java.net.URL(urldisplay).openStream();
-                    mIcon11 = BitmapFactory.decodeStream(in);
-                } catch (Exception e) {
-                    Log.e("Error", e.getMessage());
+                    wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_SYSTEM | WallpaperManager.FLAG_LOCK);
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
-                return mIcon11;
-            }
-
-            protected void onPostExecute(Bitmap result) {
-                final WallpaperManager wpManager = WallpaperManager.getInstance(context);
-                // Set the wallpaper
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    // Create the pitch black bitmap
-                    // On Android N and above use the new API to set both the general system wallpaper and
-                    // the lock-screen-specific wallpaper
-                    try {
-                        Toast.makeText(context, "set", Toast.LENGTH_SHORT).show();
-                        wpManager.setBitmap(result, null, true, WallpaperManager.FLAG_SYSTEM | WallpaperManager.FLAG_LOCK);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-                    Toast.makeText(context, "clicked", Toast.LENGTH_SHORT).show();
-                    try {
-                        wpManager.setBitmap(result);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            } else {
+                try {
+                    wpManager.setBitmap(result);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         }
     }
+
+    public void setProgressDialog() {
+        progressDialog = new ProgressDialog(getContext());
+        progressDialog.setMax(100);
+        progressDialog.setMessage("Its loading....");
+        progressDialog.setTitle("Setting wallpaper");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog.show();
+        progressDialog.setCancelable(false);
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    while (progressDialog.getProgress() <= progressDialog
+                            .getMax()) {
+                        Thread.sleep(150);
+                        handle.sendMessage(handle.obtainMessage());
+                        if (progressDialog.getProgress() == progressDialog
+                                .getMax()) {
+                            progressDialog.dismiss();
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }).start();
+    }
+
+    @SuppressLint("HandlerLeak")
+    Handler handle = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            progressDialog.incrementProgressBy(2);
+        }
+    };
+}
 
