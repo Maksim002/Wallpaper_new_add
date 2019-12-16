@@ -26,6 +26,7 @@ import com.example.wallpaper.R;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.winter.WinterRecyclerAdapter;
 import com.example.wallpaper.ui.util.ResourceManager;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -41,6 +42,7 @@ public class WinterFragment extends Fragment implements Listener {
 
     private ProgressDialog progressDialog;
 
+   
 
     @Nullable
     @Override

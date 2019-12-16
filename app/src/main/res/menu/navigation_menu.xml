@@ -16,4 +16,8 @@
     <item android:id="@+id/new_year"
         android:icon="@drawable/novog"
         android:title="Year"/>
+
+    <item android:id="@+id/state"
+        android:icon="@drawable/state"
+        android:title="State"/>
 </menu>
