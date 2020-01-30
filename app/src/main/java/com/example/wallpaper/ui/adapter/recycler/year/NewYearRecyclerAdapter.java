@@ -3,10 +3,9 @@ package com.example.wallpaper.ui.adapter.recycler.year;
 import android.view.View;
 
 import com.example.wallpaper.R;
-import com.example.wallpaper.model.Model;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseRecyclerAdaptor;
-import com.example.wallpaper.ui.main.Listener;
+import com.example.wallpaper.interfese.Listener;
 
 import java.util.List;
 

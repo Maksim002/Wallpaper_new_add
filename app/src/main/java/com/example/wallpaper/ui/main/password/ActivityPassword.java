@@ -1,8 +1,8 @@
 package com.example.wallpaper.ui.main.password;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -26,12 +26,15 @@ import com.google.firebase.auth.FirebaseUser;
 public class ActivityPassword extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
+    public static String userId="";
 
     private EditText password, email;
     private Button bt_v, bt_r;
 
     private Toolbar toolbar;
     private ActionBar bar;
+    private SharedPreferences preferences;
+    final String SAVED_TEXT = "saved_text";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -68,7 +71,16 @@ public class ActivityPassword extends AppCompatActivity {
             bt_v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    saveText();
                     Signing(email.getText().toString(),password.getText().toString());
+                }
+
+                private void saveText() {
+                    preferences = getPreferences(MODE_PRIVATE);
+                    SharedPreferences.Editor editor = preferences.edit();
+                    editor.putString(SAVED_TEXT, bt_v.getText().toString());
+                    editor.commit();
+                    Toast.makeText(ActivityPassword.this, "Text save", Toast.LENGTH_LONG).show();
                 }
             });
 
@@ -85,6 +97,7 @@ public class ActivityPassword extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
+                    userId = mAuth.getCurrentUser().getUid();
                     Toast.makeText(ActivityPassword.this, "Авторизация успешна", Toast.LENGTH_LONG).show();
                 }else {
                     Toast.makeText(ActivityPassword.this, "Авторизация провалена", Toast.LENGTH_LONG).show();

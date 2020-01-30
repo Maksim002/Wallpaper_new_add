@@ -5,8 +5,6 @@ import android.view.View;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.wallpaper.ui.main.Listener;
-
 public abstract class BaseViewHolder<V> extends RecyclerView.ViewHolder {
 
     public BaseViewHolder(@NonNull View itemView) {

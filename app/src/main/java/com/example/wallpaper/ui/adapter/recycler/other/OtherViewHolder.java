@@ -13,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.wallpaper.R;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseViewHolder;
-import com.example.wallpaper.ui.main.Listener;
+import com.example.wallpaper.interfese.Listener;
 
 import java.io.IOException;
 

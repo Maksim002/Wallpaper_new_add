@@ -2,17 +2,17 @@ package com.example.wallpaper.model;
 
 public class Model {
 
-    private int image;
+    private String obj;
 
-    public Model(int image) {
-        this.image = image;
+    public Model(String obj) {
+        this.obj = obj;
     }
 
-    public int getImage() {
-        return image;
+    public String getObj() {
+        return obj;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setObj(String obj) {
+        this.obj = obj;
     }
 }

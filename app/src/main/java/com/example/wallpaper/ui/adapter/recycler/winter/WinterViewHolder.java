@@ -1,9 +1,5 @@
 package com.example.wallpaper.ui.adapter.recycler.winter;
 
-import android.app.WallpaperManager;
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -17,7 +13,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.example.wallpaper.R;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.base.BaseViewHolder;
-import com.example.wallpaper.ui.main.Listener;
+import com.example.wallpaper.interfese.Listener;
 
 import java.io.IOException;
 

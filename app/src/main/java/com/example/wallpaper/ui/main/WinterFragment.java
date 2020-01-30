@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +22,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaper.R;
+import com.example.wallpaper.interfese.Listener;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.winter.WinterRecyclerAdapter;
 import com.example.wallpaper.ui.util.ResourceManager;
-import com.google.firebase.auth.FirebaseAuth;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 

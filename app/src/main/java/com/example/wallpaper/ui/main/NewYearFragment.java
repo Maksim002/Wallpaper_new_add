@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,7 +22,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaper.R;
-import com.example.wallpaper.model.Model;
+import com.example.wallpaper.interfese.Listener;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.year.NewYearRecyclerAdapter;
 import com.example.wallpaper.ui.util.ResourceManager;
@@ -33,7 +32,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 public class NewYearFragment extends Fragment implements Listener {

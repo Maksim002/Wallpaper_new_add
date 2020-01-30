@@ -1,4 +1,4 @@
-package com.example.wallpaper.ui.main;
+package com.example.wallpaper.interfese;
 
 import android.view.View;
 

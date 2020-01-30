@@ -15,7 +15,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +22,18 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.wallpaper.R;
-import com.example.wallpaper.model.Model;
+import com.example.wallpaper.interfese.Listener;
+import com.example.wallpaper.interfese.ListenerFerbase;
 import com.example.wallpaper.model.ModelGallery;
 import com.example.wallpaper.ui.adapter.recycler.nature.NatureRecyclerAdapter;
+import com.example.wallpaper.ui.main.password.ActivityPassword;
 import com.example.wallpaper.ui.util.ResourceManager;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -34,12 +41,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-public class NatureFragment extends Fragment implements Listener {
+public class NatureFragment extends Fragment implements Listener, ListenerFerbase {
     private RecyclerView recyclerView;
     private NatureRecyclerAdapter adapter;
     private String SAMPLES = "nature.json";
+    private FirebaseDatabase database;
+    private DatabaseReference reference;
+    private List<String> res;
 
     private ProgressDialog progressDialog;
 
@@ -48,8 +61,13 @@ public class NatureFragment extends Fragment implements Listener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_nature, container, false);
 
+        database = FirebaseDatabase.getInstance();
+
+
+
+
         recyclerView = view.findViewById(R.id.recyclerNature);
-        recyclerView.setAdapter(adapter = new NatureRecyclerAdapter(getQuestions(), this));
+        recyclerView.setAdapter(adapter = new NatureRecyclerAdapter(getQuestions(), this, this));
         adapter.updeteList(getQuestions());
 
         return view;
@@ -63,10 +81,19 @@ public class NatureFragment extends Fragment implements Listener {
     }
 
     @Override
-    public void onClick(int adapterPosition, ModelGallery data) {
+    public void onClick(int adapterPosition, final ModelGallery data) {
         setProgressDialog();
-        new DownloadImageTask(requireContext())
-                .execute(data.getUrl());
+        new DownloadImageTask(requireContext()).execute(data.getUrl());
+
+    }
+
+    @Override
+    public void ClicFaer(final ModelGallery modelGallery) {
+
+
+        reference = database.getReference().child("galley").child(ActivityPassword.userId);
+        reference.push().setValue(modelGallery.getUrl());
+
     }
 
     class DownloadImageTask extends AsyncTask<String, Void, Bitmap> {
@@ -110,6 +137,7 @@ public class NatureFragment extends Fragment implements Listener {
             }
         }
     }
+
     public void setProgressDialog() {
         progressDialog = new ProgressDialog(getContext());
         progressDialog.setMax(100);

@@ -7,15 +7,29 @@ public class ModelGallery implements Parcelable {
 
     private int id;
     private String url;
+    private Boolean kyi;
 
-    public ModelGallery(int id, String url) {
-        this.id = id;
+    public ModelGallery(String url) {
         this.url = url;
     }
 
     protected ModelGallery(Parcel in) {
         id = in.readInt();
         url = in.readString();
+        byte tmpKyi = in.readByte();
+        kyi = tmpKyi == 0 ? null : tmpKyi == 1;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(url);
+        dest.writeByte((byte) (kyi == null ? 0 : kyi ? 1 : 2));
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
     }
 
     public static final Creator<ModelGallery> CREATOR = new Creator<ModelGallery>() {
@@ -30,7 +44,7 @@ public class ModelGallery implements Parcelable {
         }
     };
 
-    public int getId(int layoutPosition) {
+    public int getId() {
         return id;
     }
 
@@ -46,14 +60,16 @@ public class ModelGallery implements Parcelable {
         this.url = url;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public Boolean getKyi() {
+        return kyi;
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(id);
-        dest.writeString(url);
+    public void setKyi(Boolean kyi) {
+        this.kyi = kyi;
+    }
+
+    public ModelGallery(int id, String url) {
+        this.id = id;
+        this.url = url;
     }
 }
