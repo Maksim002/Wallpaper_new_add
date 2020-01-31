@@ -27,8 +27,7 @@ class NatureViewHolder extends BaseViewHolder<ModelGallery> {
     private Listener listener;
     private ListenerFerbase listenerFerbase;
 
-    private FirebaseDatabase database;
-    private DatabaseReference reference;
+    private boolean number = true;
 
     public NatureViewHolder(@NonNull View itemView, Listener listener, ListenerFerbase listenerFerbase) {
         super(itemView);
@@ -47,6 +46,12 @@ class NatureViewHolder extends BaseViewHolder<ModelGallery> {
             @Override
             public void onClick(View v) {
                listenerFerbase.ClicFaer(data);
+               if (number){
+                   imageIzi.setImageResource(R.drawable.ic_favorite_yes_24dp);
+               }else {
+                   imageIzi.setImageResource(R.drawable.ic_favorite_border_black_24dp);
+                   number = !number;
+               }
             }
         });
 
@@ -72,5 +77,4 @@ class NatureViewHolder extends BaseViewHolder<ModelGallery> {
     @Override
     public void unbind() {
     }
-    /// ddef
 }
