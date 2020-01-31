@@ -33,8 +33,6 @@ public class ActivityPassword extends AppCompatActivity {
 
     private Toolbar toolbar;
     private ActionBar bar;
-    private SharedPreferences preferences;
-    final String SAVED_TEXT = "saved_text";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -71,16 +69,7 @@ public class ActivityPassword extends AppCompatActivity {
             bt_v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    saveText();
                     Signing(email.getText().toString(),password.getText().toString());
-                }
-
-                private void saveText() {
-                    preferences = getPreferences(MODE_PRIVATE);
-                    SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString(SAVED_TEXT, bt_v.getText().toString());
-                    editor.commit();
-                    Toast.makeText(ActivityPassword.this, "Text save", Toast.LENGTH_LONG).show();
                 }
             });
 
