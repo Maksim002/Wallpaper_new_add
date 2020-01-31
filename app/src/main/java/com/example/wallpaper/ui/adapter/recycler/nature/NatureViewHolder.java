@@ -72,5 +72,4 @@ class NatureViewHolder extends BaseViewHolder<ModelGallery> {
     @Override
     public void unbind() {
     }
-    //wdwdwd
 }
